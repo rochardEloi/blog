@@ -2,14 +2,14 @@
 
 class Type extends Database{
     
-    public function createType($title, $status)
+    public function createReaction($article_id, $reaction,$status, $user_id)
     {
       try {
         //code...
         $conn=Database::DatabaseConnection();
-            $data=$conn->prepare("INSERT INTO `type`(`title`,`status`) VALUES (?,?)");
+            $data=$conn->prepare("INSERT INTO `reactions`( `article_id`, `reaction`,`status`, `user_id`) VALUES ('?,?,?)");
             $data->execute(array(
-              $title, $status            
+                $article_id, $reaction,$status, $user_id          
             ));
             return "SUCCESS"; 
       } catch (Throwable $th) {
@@ -19,14 +19,14 @@ class Type extends Database{
     }
 
 
-    public function updateType($title,  $status, $type_id )
+    public function updateReaction($status, $user_id, $article_id)
     {
       try {
         //code... 
         $conn=Database::DatabaseConnection();
-            $data=$conn->prepare("UPDATE `type` SET `title`=?,`status`=? WHERE id = ?");
+            $data=$conn->prepare("UPDATE `reactions` SET `status`=? WHERE `user_id`=? and `article_id`=?");
             $data->execute(array(
-              $title, $status, $type_id             
+               $status, $user_id, $article_id       
             ));
             return "SUCCESS"; 
       } catch (Throwable $th) {
@@ -35,19 +35,20 @@ class Type extends Database{
            
     }
 
-    public function updateTypeStatus( $status, $type_id )
+    public function updateReactionStatus($status, $comment_id )
     {
       try {
+        //code... 
         $conn=Database::DatabaseConnection();
-            $data=$conn->prepare("UPDATE `type` SET `status`= ? WHERE id = ?");
+            $data=$conn->prepare("UPDATE `comments` SET `status`=? WHERE id=?");
             $data->execute(array(
-              $status, $type_id             
+              $status, $comment_id          
             ));
             return "SUCCESS"; 
       } catch (Throwable $th) {
         throw $th;
       }
-            
+           
     }
 
     
