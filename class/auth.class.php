@@ -1,8 +1,9 @@
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'].'/blog/class/signup.class.php';
-include $_SERVER['DOCUMENT_ROOT'].'/blog/class/encryption.class.php';
-include $_SERVER['DOCUMENT_ROOT'].'/blog/class/utils.class.php';
+include 'signup.class.php';
+include 'encryption.class.php';
+include 'utils.class.php';
+include 'articles.class.php';
 class Authentificator extends Database{
       var $username;
       var $password;
@@ -11,13 +12,13 @@ class Authentificator extends Database{
             $this->password= $password;
 
           $conn=Database::DatabaseConnection();
-          $data=$conn->query("select * from users where email=$this->username");
+          $data=$conn->query("select * from users where email='$this->username'");
             if($data->rowCount()==1){
                 $row = $data->fetch(PDO::FETCH_ASSOC);
                 $valid = password_verify($this->password, $row['password']);
                 
                 if($valid == '1'){
-                   $this->createSessionVariable($row['id_user'], $conn);
+                   $this->createSessionVariable($row['id'], $conn);
                    return "SUCCESS";
                 }
                 else

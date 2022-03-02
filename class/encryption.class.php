@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/blog/config/cryptconfig.php';
+include './config/cryptconfig.php';
 class Encryption{
 
     var $ENCRYPTION_KEY = ENCRYPTION_CODE;

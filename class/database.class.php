@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/blog/config/dbconfig.php';
+include './config/dbconfig.php';
 class Database{
 
     public static function DatabaseConnection()

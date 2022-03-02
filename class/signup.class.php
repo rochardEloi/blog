@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/blog/class/database.class.php';
+include 'database.class.php';
 class Signup extends Database{
     var $last_name ;
     var $first_name ;
@@ -9,14 +9,13 @@ class Signup extends Database{
     var $type;
     var $status ;
     
-    public function __construct($last_name, $first_name, $email,  $password,$type, $status,$openning_date, $phone_number) {
+    public function __construct($last_name, $first_name, $email,  $password,$type, $status, $phone_number) {
         $this-> last_name= $last_name ;
         $this-> first_name= $first_name ;       
         $this-> email= $email ;
         $this-> password= $password ;
         $this->type = $type;
         $this-> status= $status ;
-        $this-> openning_date= $openning_date ;
         $this-> phone_number= $phone_number ;
     }
     
