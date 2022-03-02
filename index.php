@@ -9,7 +9,10 @@ include "./class/auth.class.php";
 //echo $auth->Authentification("eloirochard1234@gmail.com", "1234");
 //echo $auth->verifySession("http://google.com");
 
-$article = new Article();
+//$article = new Article();
 //$article->createArticle("Mon Premier Article", "Mon contenu", "Description", 2, "enable");
-$article->updateArticleStatus("disable", 1);
+//$article->updateArticleStatus("disable", 1);
+
+
+
 ?>
