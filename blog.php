@@ -1,7 +1,7 @@
 <?php
 include "./class/auth.class.php";
 $auth = new Authentificator();
-//$user = $auth->verifySession("http://google.com");
+$user = $auth->verifySession("http://google.com");
 ?>
 
 
