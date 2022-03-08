@@ -1,6 +1,27 @@
 <?php
 
 class Category extends Database{
+
+  public function getCategory()
+  {
+    $conn=Database::DatabaseConnection();
+    $data=$conn->query("select * from category");
+    $row = $data->fetch(PDO::FETCH_ASSOC);
+    return $row;
+  }
+
+  public function getSomeCategory($column, $value)
+  {
+    $conn=Database::DatabaseConnection();
+    $data=$conn->query("select * from category $column='$value'");
+    $dataArray = array();
+      $i = 0;
+      while($datas = $data->fetch(PDO::FETCH_ASSOC)){
+          $dataArray[$i] = $datas;
+          $i++;
+      }
+      return $dataArray;
+  }
     
     public function createCategory($title, $status)
     {

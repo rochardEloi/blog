@@ -1,6 +1,28 @@
 <?php
 
-class Type extends Database{
+class Reaction extends Database{
+
+
+    public function getReaction()
+    {
+      $conn=Database::DatabaseConnection();
+      $data=$conn->query("select * from reaction");
+      $dataArray = array();
+      $i = 0;
+      while($datas = $data->fetch(PDO::FETCH_ASSOC)){
+          $dataArray[$i] = $datas;
+          $i++;
+      }
+      return $dataArray;
+    }
+
+    public function getSomeReaction($column, $value)
+    {
+      $conn=Database::DatabaseConnection();
+      $data=$conn->query("select * from reaction $column='$value'");
+      $row = $data->fetch(PDO::FETCH_ASSOC);
+      return $row;
+    }
     
     public function createReaction($article_id, $reaction,$status, $user_id)
     {

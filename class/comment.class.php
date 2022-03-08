@@ -1,6 +1,27 @@
 <?php
 
-class Type extends Database{
+class Comment extends Database{
+
+    public function getComment()
+    {
+      $conn=Database::DatabaseConnection();
+      $data=$conn->query("select * from comment");
+      $dataArray = array();
+      $i = 0;
+      while($datas = $data->fetch(PDO::FETCH_ASSOC)){
+          $dataArray[$i] = $datas;
+          $i++;
+      }
+      return $dataArray;
+    }
+
+    public function getSomeComment($column, $value)
+    {
+      $conn=Database::DatabaseConnection();
+      $data=$conn->query("select * from comment $column='$value'");
+      $row = $data->fetch(PDO::FETCH_ASSOC);
+      return $row;
+    }
     
     public function createComment($article_id, $user_id, $comment, $status)
     {

@@ -1,6 +1,28 @@
 <?php
 
 class Type extends Database{
+
+
+    public function getType()
+    {
+      $conn=Database::DatabaseConnection();
+      $data=$conn->query("select * from type");
+      $dataArray = array();
+      $i = 0;
+      while($datas = $data->fetch(PDO::FETCH_ASSOC)){
+          $dataArray[$i] = $datas;
+          $i++;
+      }
+      return $dataArray;
+    }
+
+    public function getSomeType($column, $value)
+    {
+      $conn=Database::DatabaseConnection();
+      $data=$conn->query("select * from type $column='$value'");
+      $row = $data->fetch(PDO::FETCH_ASSOC);
+      return $row;
+    }
     
     public function createType($title, $status)
     {

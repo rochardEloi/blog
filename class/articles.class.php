@@ -1,6 +1,27 @@
 <?php
 
 class Article extends Database{
+
+    public function getArticles()
+    {
+      $conn=Database::DatabaseConnection();
+      $data=$conn->query("select * from articles");
+      $dataArray = array();
+      $i = 0;
+      while($datas = $data->fetch(PDO::FETCH_ASSOC)){
+          $dataArray[$i] = $datas;
+          $i++;
+      }
+      return $dataArray;
+    }
+
+    public function getSomeArticles($column, $value)
+    {
+      $conn=Database::DatabaseConnection();
+      $data=$conn->query("select * from articles $column='$value'");
+      $row = $data->fetch(PDO::FETCH_ASSOC);
+      return $row;
+    }
     
     public function createArticle($title, $content, $description, $user_id, $status)
     {

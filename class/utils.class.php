@@ -38,6 +38,17 @@ class Utils{
         $token = bin2hex(random_bytes($length));
         return $token;
     }
+
+    public function Variables($name)
+    {
+        $conn=Database::DatabaseConnection();
+        $data=$conn->query("select value from variables where name='$name'");
+          if($data->rowCount()==1){
+              $row = $data->fetch(PDO::FETCH_ASSOC);
+              return $row;
+          }  
+          return "fail";
+    }
   
 }
 

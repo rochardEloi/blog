@@ -4,6 +4,10 @@ include 'signup.class.php';
 include 'encryption.class.php';
 include 'utils.class.php';
 include 'articles.class.php';
+include 'comment.class.php';
+include 'reaction.class.php';
+include 'type.class.php';
+include 'category.class.php';
 class Authentificator extends Database{
       var $username;
       var $password;
@@ -52,7 +56,7 @@ class Authentificator extends Database{
         //echo $_SESSION['auth_token']."</br>";
      }
 
-     public function verifySession($redirect_url)
+     public function verifySession($redirect_url=null)
      {
          if(isset($_SESSION['auth_token_'])){
             $encrypt_session=$_SESSION['auth_token_'];
@@ -67,7 +71,10 @@ class Authentificator extends Database{
             $verifyDate=strtotime($expirationDate)-time();
             if($verifyDate<=0){
               //Expired Token
+              if($redirect_url!= null)
               header("location:$redirect_url");
+              else
+               return null;
 
             }else{
                 //Auth
@@ -76,7 +83,10 @@ class Authentificator extends Database{
             }       
          }else{
             // echo "No session";
-             header("location:$redirect_url");
+            if($redirect_url!= null)
+            header("location:$redirect_url");
+            else
+             return null;
          }
           
      }
